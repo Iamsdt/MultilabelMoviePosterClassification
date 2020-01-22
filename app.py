@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+import model
 
 app = Flask(__name__)
 
@@ -6,6 +7,28 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello World!'
+
+
+@app.route('/analysis/', methods=['GET', 'POST'])
+def hello_world():
+    if request.method == 'POST':
+        img = request.get_json()
+        print(str(img['img']))
+        response = model.predict(img)
+        data = {
+            "response": 1,
+            "result": response
+        }
+        print(data)
+        return jsonify(
+            data)
+    else:
+        data = {
+            "response": 0,
+            "result": "Send post request"
+        }
+        return jsonify(
+            data)
 
 
 if __name__ == '__main__':
