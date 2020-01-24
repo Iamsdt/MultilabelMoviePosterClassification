@@ -9,8 +9,8 @@ def hello_world():
     return 'Hello World!'
 
 
-@app.route('/analysis/', methods=['GET', 'POST'])
-def hello_world():
+@app.route('/analysis/', methods=['POST', 'GET'])
+def analysis():
     if request.method == 'POST':
         img = request.get_json()
         print(str(img['img']))
