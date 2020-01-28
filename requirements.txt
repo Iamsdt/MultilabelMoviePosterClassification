@@ -1,5 +1,5 @@
 PIL
-tensorflow==2.0.0
+tensorflow==2.0.1
 numpy
 pickle
 Flask==1.1.1
