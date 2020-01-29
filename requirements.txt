@@ -1,4 +1,4 @@
-https://files.pythonhosted.org/packages/10/e8/64043f0cee782f751748e1954e4ec174850f620f5723298614fab1c5f49b/tensorflow-2.0.1-cp36-cp36m-win_amd64.whl
+tensorflow==2.1.0
 numpy==1.8.1
 Flask==1.1.1
 gunicorn==20.0.4
