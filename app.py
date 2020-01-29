@@ -19,7 +19,8 @@ def load():
 
 
 def preprocess(raw_img):
-    raw = base64.b64decode(str(raw_img))
+    raw = raw_img.decode()
+    raw = base64.b64decode(str(raw))
     image_data = Image.open(io.BytesIO(raw))
     resized = image_data.resize((350, 350))
     arr = np.asarray(resized)
@@ -68,19 +69,17 @@ def hello_world():
 @app.route('/analysis/', methods=['POST', 'GET'])
 def analysis():
     if request.method == 'POST':
-        img = request.get_json()
-        print(str(img['img']))
+        img = request.data
+        print(type(img))
+        print(img)
         response = predict(img)
         data = {
-            "response": 1,
             "result": response
         }
-        print(data)
         return jsonify(
             data)
     else:
         data = {
-            "response": 0,
             "result": "Send post request"
         }
         return jsonify(
