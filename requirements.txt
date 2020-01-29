@@ -1,6 +1,4 @@
-PIL
 tensorflow==2.0.0
 numpy
-pickle
 Flask==1.1.1
-gunicorn==19.9.0
+gunicorn==20.0.4
