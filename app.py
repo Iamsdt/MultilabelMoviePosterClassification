@@ -4,6 +4,7 @@ import numpy as np
 import base64
 import io
 from PIL import Image
+from flask_cors import CORS
 
 classes = ['Family', 'Sport', 'Short', 'Drama', 'News', 'Thriller', 'History',
            'Sci-Fi', 'Adventure', 'Fantasy', 'Comedy', 'Music', 'Reality-TV',
@@ -59,6 +60,7 @@ def predict(raw):
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
