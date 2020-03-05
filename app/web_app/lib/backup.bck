@@ -1,0 +1,53 @@
+Container(
+              width: 300.0,
+              height: 300.0,
+              color: Colors.red,
+              child: _bytesData != null
+                  ? Image.memory(
+                _bytesData,
+                height: 100.0,
+              )
+                  : Text("Image is loading"),
+            ),
+            SizedBox(
+              height: 32.0,
+            ),
+            Visibility(
+              visible: visibility,
+              child: RaisedButton(
+                  child: Text(
+                    "Analysis",
+                    style: TextStyle(fontSize: 23.0, color: Colors.deepOrange),
+                  ),
+                  onPressed: () {
+                    var res = postRequest(imgData);
+                    res.catchError(() {
+                      print("Error");
+                    });
+                  }),
+            ),
+            Visibility(
+                visible: showResult,
+                child: result != null
+                    ? Container(
+                  child: Row(
+                    children: <Widget>[
+                      ListView.builder(
+                          itemCount: result.length,
+                          itemBuilder: (BuildContext ctx, int position) {
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(2.0)),
+                              ),
+                              color: Colors.blue,
+                              child: Text(
+                                result[position],
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            );
+                          })
+                    ],
+                  ),
+                )
+                    : Container())
