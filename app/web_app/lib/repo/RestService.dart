@@ -19,8 +19,7 @@ abstract class RestService {
 
 @JsonSerializable()
 class Labels {
-
-  List<String> label;
+  List<dynamic> label;
 
   Labels(this.label);
 

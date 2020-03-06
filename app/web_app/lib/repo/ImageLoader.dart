@@ -1,11 +1,12 @@
 import 'dart:html' as html;
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:states_rebuilder/states_rebuilder.dart';
 
 class ImageLoader {
   var _bytesData;
 
-  void pickImages() async {
+  Future<dynamic> pickImages() async {
     html.InputElement uploadInput = html.FileUploadInputElement();
     uploadInput.multiple = false;
     uploadInput.draggable = true;
@@ -19,9 +20,18 @@ class ImageLoader {
       reader.onLoadEnd.listen((e) {
         var result = reader.result;
         _bytesData = Base64Decoder().convert(result.toString().split(",").last);
+        final reactiveModel = Injector.getAsReactive<ImageLoader>();
+        reactiveModel.setState((store) => store._bytesData = _bytesData);
+        return _bytesData;
       });
+
       reader.readAsDataUrl(file);
     });
+  }
+
+  void requestPickImage() async {
+    var data = await pickImages();
+    _bytesData = data;
   }
 
   get bytesData => _bytesData;
