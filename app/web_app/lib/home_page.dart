@@ -300,7 +300,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget handleOnError(error) {
     print(error);
-    return Text("Hey I got an error");
+    return Text(
+      "Hey I got an error",
+      style: TextStyle(color: Colors.red, fontSize: 32.0),
+    );
   }
 
   Widget showEmptyContainer(var error) {
@@ -339,19 +342,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
       return Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    width: 3, color: Colors.green, style: BorderStyle.solid)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.memory(
-                state.bytesData,
-                width: 300.0,
-                height: 320.0,
-                fit: BoxFit.fill,
+          InkWell(
+            onTap: () {
+              pickImage();
+            },
+            child: Container(
+              padding: EdgeInsets.only(),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(
+                      width: 3, color: Colors.green, style: BorderStyle.solid)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Image.memory(
+                  state.bytesData,
+                  width: 300.0,
+                  height: 320.0,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
