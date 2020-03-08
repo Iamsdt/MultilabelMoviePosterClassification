@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
+import 'package:web_app/repo/Button.dart';
 import 'package:web_app/repo/ImageLoader.dart';
 import 'package:web_app/repo/MyRepo.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       inject: [
         Inject<MyRepo>(() => MyRepo()),
         Inject<ImageLoader>(() => ImageLoader()),
+        Inject<ButtonState>(() => ButtonState()),
       ],
       builder: (context) => MaterialApp(
         title: 'Movie Poster Classification',
